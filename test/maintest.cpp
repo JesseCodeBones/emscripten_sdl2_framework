@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include "../include/test.hpp"
 TEST(emscripten_sdl2_framework_test, e2e) {
-  ASSERT_EQ(42, 42);
+  TestClass t;
+  ASSERT_EQ(42, t.returnInt(42));
 }
