@@ -14,3 +14,17 @@ file(GLOB sources CONFIGURE_DEPENDS ../src/*.cpp ../src/*.hpp)
 target_sources(emscripten_sdl2_framework_test PUBLIC ${sources})
 include(GoogleTest)
 gtest_discover_tests(emscripten_sdl2_framework_test)
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+  LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+  include(CodeCoverage)
+  setup_target_for_coverage_gcovr_xml(NAME cov
+                            EXECUTABLE emscripten_sdl2_framework_test
+                            DEPENDENCIES emscripten_sdl2_framework_test
+                            BASE_DIRECTORY "${PROJECT_SOURCE_DIR}")
+
+  setup_target_for_coverage_gcovr_html(NAME cov_html 
+                            EXECUTABLE emscripten_sdl2_framework_test
+                            DEPENDENCIES emscripten_sdl2_framework_test
+                            BASE_DIRECTORY "${PROJECT_SOURCE_DIR}") 
+endif()
