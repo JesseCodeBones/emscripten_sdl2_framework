@@ -11,7 +11,8 @@ GLuint EmscriptenSdl2Framework::compileShader(GLenum type, const char *source) {
   if (0 == success) {
     char infoLog[512]; // NOLINT(modernize-avoid-c-arrays)
     glGetShaderInfoLog(shader, sizeof(infoLog), nullptr, infoLog);
-    printf("Shader compilation failed:\n%s\n", infoLog); // NOLINT(cppcoreguidelines-pro-type-vararg)
+    printf("Shader compilation failed:\n%s\n",
+           infoLog);        // NOLINT(cppcoreguidelines-pro-type-vararg)
     printf("%s\n", source); // NOLINT(cppcoreguidelines-pro-type-vararg)
     glDeleteShader(shader);
     return 0;
@@ -33,4 +34,6 @@ bool EmscriptenSdl2Framework::loop() {
   this->render_();
   return quit;
 }
-void EmscriptenSdl2Framework::wasmLoop() { loop(); }
+void EmscriptenSdl2Framework::wasmLoop() {
+  loop();
+}
